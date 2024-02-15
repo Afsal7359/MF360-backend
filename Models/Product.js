@@ -2,28 +2,28 @@ const mongoose = require('mongoose');
 
 const ProductSchema= new mongoose.Schema({
    
-    Id:{
+    id:{
         type: String,
-        require:true,
+        required:true,
         trim:true
     },
     name:{
         type: String,
-        require:true,
+        required:true,
         trim:true
     },
-    Price:{
+    price:{
         type:Number,
-        require:true,
+        required:true,
         trim:true
     },
-    Stock:{
+    stock:{
         type: Number,
         trim:true
     },
     isdeleted:{
         type:Boolean,
-        require:true,
+        required:true,
         default:false
     }
    

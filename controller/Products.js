@@ -7,7 +7,10 @@ module.exports={
             console.log(data,"data");
             const existingProduct = await Products.findOne({ $or: [{ name: data.name}],})
             if(existingProduct !== null){
-                return res.status(409).json('This product already exists')
+                return res.status(404).json({
+                    success: false,
+                    message: "product already exist ."
+                  });
             }else{
                 const newProduct = new  Products(data);
                 await newProduct.save();
