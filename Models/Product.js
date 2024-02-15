@@ -4,17 +4,17 @@ const ProductSchema= new mongoose.Schema({
    
     id:{
         type: String,
-        required:true,
+        require:true,
         trim:true
     },
     name:{
         type: String,
-        required:true,
+        require:true,
         trim:true
     },
     price:{
         type:Number,
-        required:true,
+        require:true,
         trim:true
     },
     stock:{
@@ -23,7 +23,7 @@ const ProductSchema= new mongoose.Schema({
     },
     isdeleted:{
         type:Boolean,
-        required:true,
+        require:true,
         default:false
     }
    
