@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 
 
 const Products = require('./Routes/Productroute')
+const Shops = require('./Routes/Shop');
+const Area = require('./Routes/Area');
+const Orders = require("./Routes/Orders");
 
 dotenv.config()
 
@@ -34,6 +37,9 @@ app.use(express.urlencoded({ extended: true }))
 
 
 app.use('/api/product',Products)
+app.use('/api/shop',Shops);
+app.use('/api/area', Area);
+app.use('/api/orders',Orders);
 
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{
