@@ -49,28 +49,33 @@ module.exports={
             })
         }
     },
-    SearchProducts:async(req,res)=>{
+    SearchProducts: async (req, res) => {
         try {
-            const searchTerm = req.query.q;
-            console.log(searchTerm,"searchterm");
-      const regex = new RegExp(searchTerm,"i");
-      const productData = await Products.find({ name: regex });
-      if(!productData){
-        return res.status(404).json({
-            success:false,
-            message:"No Data Found"
-        })
-    }
-    res.status(200).json({
-        success: true,
-        data: productData,
-      });
+          const { query } = req.params;
+          console.log(query, "searchterm");
+      
+          const regex = new RegExp(query, "i");
+          console.log(regex);
+          const productDatas = await Products.find({ name: regex });
+      
+          if (productDatas.length === 0) {
+            return res.status(404).json({
+              success: false,
+              message: "No Data Found",
+            });
+          } else {
+            res.status(200).json({
+              success: true,
+              data: productDatas,
+            });
+          }
         } catch (error) {
-            console.log(error);
-            res.status(500).json({
-                success:false,
-                message:error
-            })
+          console.log(error);
+          res.status(500).json({
+            success: false,
+            message: error.message || "Internal Server Error",
+          });
         }
-    }
+      }
+      
 }
