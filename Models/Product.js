@@ -17,6 +17,10 @@ const ProductSchema= new mongoose.Schema({
         require:true,
         trim:true
     },
+    image:{
+        type:String,
+        trim:true
+    },
     stock:{
         type: String,
         trim:true

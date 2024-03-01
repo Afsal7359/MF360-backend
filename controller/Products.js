@@ -1,10 +1,13 @@
 const Products = require("../Models/Product");
+const cloudinary = require("../Util/Cloudinary");
 
 module.exports={
     AddProducts: async (req,res)=>{
         try {
             const data = req.body;
             console.log(data,"data");
+            const result = await cloudinary.uploader.upload(req.file.path);
+            const imageurl = result.url
             const existingProduct = await Products.findOne({ $or: [{ name: data.name}],})
             if(existingProduct !== null){
                 return res.status(404).json({
@@ -12,7 +15,12 @@ module.exports={
                     message: "product already exist ."
                   });
             }else{
-                const newProduct = new  Products(data);
+              const newProduct = new Products({
+                name: data.name,
+                stock: data.stock,
+                price: data.price,
+                image: imageUrl, 
+              });
                 await newProduct.save();
                 res.status(200).json({
                     success:true,
