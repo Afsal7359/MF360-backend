@@ -13,7 +13,7 @@ const OrderSchema = new mongoose.Schema({
     cartitem: {
         type: [{
             id: {
-                type: mongoose.Schema.Types.Mixed,
+                type: String,
                 default:null
             },
             name: {

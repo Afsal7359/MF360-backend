@@ -27,7 +27,6 @@ module.exports={
             const orders = await Order.find({ isdeleted: { $ne: true } })
             .sort({_id:-1})
             .populate('shop')
-            .populate('cartitem.products')
             if(!orders){
                 return  res.status(404).json({
                     success:false,
